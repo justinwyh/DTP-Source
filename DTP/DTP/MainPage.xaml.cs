@@ -32,6 +32,7 @@ namespace DTP
             this.InitializeComponent();
             Connection.instance.isConnectionChangedEvent += MainPage_ConnectionChangedEvent;
             ControllerPage.isStopObjectTrackingEvent += MainPage_isStopObjectTrackingEvent;
+            
             ApplicationView.PreferredLaunchViewSize =new Size(1600, 900);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 

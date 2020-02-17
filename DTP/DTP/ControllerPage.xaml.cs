@@ -5,7 +5,6 @@ using DTP.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.IO;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -13,6 +12,7 @@ using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Metadata;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -556,37 +556,29 @@ namespace DTP
             {
                 if (data != null)
                 {
-                    var sb = new StringBuilder("Size:");
-                    sb.Append(data.Length + " { ");
-                    foreach (var b in data)
-                    {
-                        sb.Append(b + ", ");
-                    }
-                    sb.Append("}");
-                    StorageFile tmpLogTxt = await ExtractedFramesFolder.CreateFileAsync("Log" + currImageCount.ToString() + ".txt", CreationCollisionOption.OpenIfExists);
-                    await FileIO.AppendTextAsync(tmpLogTxt, sb.ToString());
-                    await FileIO.AppendTextAsync(tmpLogTxt, Environment.NewLine);
-                    System.Diagnostics.Debug.WriteLine(currImageCount);
+                    // Debug: For printting the byte data
+                    //var tmpSB = new StringBuilder("Size:");
+                    //tmpSB.Append(data.Length + " { ");
+                    //foreach (var b in data)
+                    //{
+                    //    tmpSB.Append(b + ", ");
+                    //}
+                    //tmpSB.Append("}");
+                    //StorageFile tmpLogTxt = await ExtractedFramesFolder.CreateFileAsync("Log" + currImageCount.ToString() + ".txt", CreationCollisionOption.OpenIfExists);
+                    //await FileIO.AppendTextAsync(tmpLogTxt, tmpSB.ToString());
+                    //await FileIO.AppendTextAsync(tmpLogTxt, Environment.NewLine);
+                    //System.Diagnostics.Debug.WriteLine(currImageCount);
 
+                    //Generate JPG files for OpenCV in Python to consume
                     StorageFile tempFile = await ExtractedFramesFolder.CreateFileAsync((currImageCount).ToString() + ".jpg", CreationCollisionOption.ReplaceExisting);
                     var raStream = await tempFile.OpenStreamForWriteAsync();
                     var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, raStream.AsRandomAccessStream());
                     encoder.SetPixelData(BitmapPixelFormat.Rgba8, BitmapAlphaMode.Straight, (uint)width, (uint)height, 96, 96, data);
                     await encoder.FlushAsync();
 
-                    CaculateFrameGenerationTime();
 
-                    					
-				    SoftwareBitmap RGBA8SoftwareBitmap = new SoftwareBitmap(BitmapPixelFormat.Rgba8, width, height,BitmapAlphaMode.Straight);
-                    using (var stream = new InMemoryRandomAccessStream())
-                    {
-                        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-                        encoder.SetSoftwareBitmap(RGBA8SoftwareBitmap);
-                        await encoder.FlushAsync();
-                        Bitmap tmpBitmap = new Bitmap(stream.AsStream());
-                        
-                        Image<Bgr, byte> image = new Image<Bgr, byte>(tmpBitmap);
-                    }
+                    System.Diagnostics.Debug.WriteLine(currImageCount);
+                    CaculateFrameGenerationTime();
                 }
             }
             catch (Exception ex)

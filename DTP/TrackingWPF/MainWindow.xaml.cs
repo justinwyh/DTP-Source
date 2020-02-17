@@ -18,7 +18,7 @@ namespace TrackingWPF
     public partial class MainWindow : Window
     {
         //private string TrackingProgramPath = @"C:\Users\Family\DTP_Data\Tools\pysot.exe";
-        private string TrackingProgramPath = @"C:\Users\Family\Anaconda3\envs\pysot\python.exe";
+        private string ProgramPath = @"C:\Users\Family\Anaconda3\envs\pysot\python.exe";
         private PythonProgram PyObjectTracking;
         private AppServiceConnection Connection = null;
         private ConcurrentQueue<string> PyOutputQueue = new ConcurrentQueue<string>();
@@ -35,7 +35,7 @@ namespace TrackingWPF
             StartTBConsoleWriteLineTask();
             StartHandlePyOutputTask();
             StartSendBoundingBoxesTask();
-            PyObjectTracking = new PythonProgram("Object Tracking", TrackingProgramPath);
+            PyObjectTracking = new PythonProgram("Object Tracking", ProgramPath);
             PyObjectTracking.tbORHandler += PyOTConsoleOutputEvent;
             InitAppServiceConnection();
         }
@@ -220,7 +220,7 @@ namespace TrackingWPF
             //    "--snapshot C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
             //    "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 3");
 
-            PyObjectTracking.executePythonProgram("C:/Users/Family/Documents/FYP_CV_Code/Source/PySOT/demo.py --config C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
+            PyObjectTracking.executePythonProgram("C:/Users/Family/Documents/FYP_CV_Code/DTP_Source/PySOT/demo.py --config C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
      "--snapshot C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
      "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 5");
             

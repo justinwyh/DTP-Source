@@ -162,12 +162,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Emgu.CV">
-      <Version>4.2.0.3662</Version>
-    </PackageReference>
-    <PackageReference Include="Emgu.CV.runtime.windows">
-      <Version>4.2.0.3662</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
@@ -177,7 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DJIWindowsSDK">
-      <HintPath>..\..\DJI\WSDK Libraries\SDK dll x64\DJIWindowsSDK.dll</HintPath>
+      <HintPath>..\..\..\DJI\WSDK Libraries\SDK dll x64\DJIWindowsSDK.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

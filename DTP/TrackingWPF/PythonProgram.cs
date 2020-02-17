@@ -19,11 +19,11 @@ namespace TrackingWPF
 
         public void executePythonProgram(string arguments)
         {
-
-            var thread = new Thread(new ThreadStart(() =>
+            try
             {
-                try
+                var thread = new Thread(new ThreadStart(() =>
                 {
+
                     using (Process p = new Process())
                     {
                         p.StartInfo.FileName = programPath;
@@ -40,14 +40,13 @@ namespace TrackingWPF
                         p.Close();
                         tbORHandler(programName + " - End");
                     }
-                }
-                catch (Exception ex)
-                {
-                    tbORHandler(ex.ToString());
-                }
-
-            }));
-            thread.Start();
+                }));
+                thread.Start();
+            }
+            catch (Exception ex)
+            {
+                tbORHandler(ex.ToString());
+            }
         }
 
         private void PythonOutputStreamReceivedHandler(object sender, DataReceivedEventArgs e)
