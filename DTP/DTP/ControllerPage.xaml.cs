@@ -556,6 +556,17 @@ namespace DTP
             {
                 if (data != null)
                 {
+                    var sb = new StringBuilder("Size:");
+                    sb.Append(data.Length + " { ");
+                    foreach (var b in data)
+                    {
+                        sb.Append(b + ", ");
+                    }
+                    sb.Append("}");
+                    StorageFile tmpLogTxt = await ExtractedFramesFolder.CreateFileAsync("Log" + currImageCount.ToString() + ".txt", CreationCollisionOption.OpenIfExists);
+                    await FileIO.AppendTextAsync(tmpLogTxt, sb.ToString());
+                    await FileIO.AppendTextAsync(tmpLogTxt, Environment.NewLine);
+                    System.Diagnostics.Debug.WriteLine(currImageCount);
 
                     StorageFile tempFile = await ExtractedFramesFolder.CreateFileAsync((currImageCount).ToString() + ".jpg", CreationCollisionOption.ReplaceExisting);
                     var raStream = await tempFile.OpenStreamForWriteAsync();
@@ -564,6 +575,18 @@ namespace DTP
                     await encoder.FlushAsync();
 
                     CaculateFrameGenerationTime();
+
+                    					
+				    SoftwareBitmap RGBA8SoftwareBitmap = new SoftwareBitmap(BitmapPixelFormat.Rgba8, width, height,BitmapAlphaMode.Straight);
+                    using (var stream = new InMemoryRandomAccessStream())
+                    {
+                        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                        encoder.SetSoftwareBitmap(RGBA8SoftwareBitmap);
+                        await encoder.FlushAsync();
+                        Bitmap tmpBitmap = new Bitmap(stream.AsStream());
+                        
+                        Image<Bgr, byte> image = new Image<Bgr, byte>(tmpBitmap);
+                    }
                 }
             }
             catch (Exception ex)
