@@ -1,0 +1,105 @@
+﻿<Page
+    x:Class="DTP.ControllerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DTP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid  x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="7.5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Border Name="HeadBorder" Background="Black" Grid.ColumnSpan="2" Grid.Row="0">
+            <TextBlock  Margin="5,10,0,0" FontSize="16" Foreground="White" FontWeight="SemiBold" Text="Controller" HorizontalAlignment="Stretch">
+            </TextBlock>
+        </Border>
+        <TextBlock Margin="0,10,0,0" FontSize="15" Text="Live Stream:" Grid.Row="1" Grid.Column="0"></TextBlock>
+        <SwapChainPanel Margin="10,40,10,10" x:Name="swapChainPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" />
+        <StackPanel  HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1">
+            <TextBlock Margin="0,10,0,0" FontSize="15" Text="Console Output:"></TextBlock>
+            <TextBox Margin="0,10,0,0" x:Name="ConsoleOutputTB" TextWrapping="Wrap" Text="" IsReadOnly="True" HorizontalAlignment="Stretch"
+                             Background="WhiteSmoke" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                             TextChanged="BBoxOutputTB_TextChanged" Height="300" AllowFocusOnInteraction="False"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Frame Extraction FPS:"/>
+                    <TextBlock  Margin="10,10,0,0" Name="FPSlbl" FontSize="15"  Text="-" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Aircraft Velocity in X :"/>
+                    <TextBlock  Margin="10,10,0,0" Name="xvelocitylbl" FontSize="15"  Text="- m/s" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Aircraft Velocity in Y :"/>
+                    <TextBlock  Margin="10,10,0,0" Name="yvelocitylbl" FontSize="15"  Text="- m/s" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Aircraft Velocity in Z :"/>
+                    <TextBlock  Margin="10,10,0,0" Name="zvelocitylbl" FontSize="15"  Text="- m/s" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Altitude:"/>
+                    <TextBlock  Margin="10,10,0,0" Name="altitudelbl" FontSize="15"  Text="-" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Pitch:"/>
+                    <TextBlock  Margin="10,10,0,0" Name="pitchlbl" FontSize="15"  Text="-" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Row:"/>
+                    <TextBlock  Margin="10,10,0,0" Name="rolllbl" FontSize="15"  Text="-" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Yaw:"/>
+                    <TextBlock  Margin="10,10,0,0" Name="yawlbl" FontSize="15"  Text="-" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Margin="0,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Row="2" Grid.ColumnSpan="2">
+            <Border Background="Black">
+                <TextBlock  Margin="5,10,0,0" FontSize="16" Foreground="White" FontWeight="SemiBold" Text="Functions" HorizontalAlignment="Stretch">
+                </TextBlock>
+            </Border>
+            <Grid Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="AliceBlue">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock  Margin="0,10,10,0" FontSize="18" Text="Auto Take Off/Landing:" Grid.Row="0" Grid.Column="0" 
+                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button Name="ATOButton" Margin="0,10,10,0" FontSize="18" Content="Take Off" Grid.Row="0" Grid.Column="1" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ATOButton_Click"/>
+                <Button Name="ALButton" Margin="0,10,10,0" FontSize="18" Content="Landing" Grid.Row="0" Grid.Column="2" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ALButton_Click" />
+                <TextBlock  Margin="0,10,10,0" FontSize="18" Text="Visual Object Tracking:" Grid.Row="1" Grid.Column="0" 
+                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button Name="VOTStartButton" Margin="0,10,10,0" FontSize="18" Content="Start" Grid.Row="1" Grid.Column="1" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="VOTStartButton_Click"/>
+                <Button Name="VOTStopButton" Margin="0,10,10,0" FontSize="18" Content="Stop" Grid.Row="1" Grid.Column="2" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="VOTStopButton_Click"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

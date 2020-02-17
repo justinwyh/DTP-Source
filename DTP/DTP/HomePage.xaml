@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="DTP.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DTP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <StackPanel>
+            <TextBlock FontSize="20" FontWeight="Bold" Style="{StaticResource TitleTextBlockStyle}">Home Page</TextBlock>
+            <Grid Name="ContentGrid"  Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="6*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"/>
+                    <ColumnDefinition Width="9*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="0" Grid.ColumnSpan="3">
+                    <TextBlock FontSize="15" Text="Connection Status:"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="80,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="0" Grid.Column="1">
+                    <TextBlock Name="ConnectionStatus" FontSize="15" Text="Not Connected" Foreground="Red"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="1" Grid.ColumnSpan="3">
+                    <TextBlock FontSize="15" Text="Extracted Raw Frames Path:"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="80,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="1" Grid.Column="1">
+                    <TextBox FontSize="15" Text="C:\Users\Family\DTP_Data\DJI\Output" UseLayoutRounding="True" d:LayoutRounding="Auto" Width="720" Name="appDataPathTB" IsEnabled="False">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Margin="10,10,0,0" HorizontalAlignment="left" VerticalAlignment="Top" Grid.Row ="2" Grid.Column="0">
+                    <TextBlock FontSize="15" Text="Log:"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="80,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="2" Grid.Column="1">
+                    <TextBox x:Name="ConnectionOutputTB" TextWrapping="Wrap" Text="" IsReadOnly="True" 
+                             Background="WhiteSmoke" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                             TextChanged="ConnectionOutputTB_TextChanged" Width="720" Height="300"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
