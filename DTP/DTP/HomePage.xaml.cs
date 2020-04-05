@@ -24,12 +24,13 @@ namespace DTP
             Connection.instance.isRegisterErrorOccurredEvent += HomePage_isRegisterErrorOccurredEvent;
             Controller.IsResultReceivedEvent += HomePage_isResultReceivedEvent;
             //set localsettings variables
-            APPConfig.instance.setConfigProperties("FullExtractedFramesFolderPath", appDataPathTB.Text.ToString()); //installer?
+            appDataPathTB.Text = @"C:\Users\Family\DTP_Data";
+            APPConfig.instance.setConfigProperties("DataPath", appDataPathTB.Text.ToString().Replace(@"\",@"/")); 
             string[] filePaths = appDataPathTB.Text.ToString().Split(":\\");
             APPConfig.instance.setConfigProperties("Drive", filePaths[0] + ":\\");
-            APPConfig.instance.setConfigProperties("ExtractedFramesFolder", filePaths[1]);
+            APPConfig.instance.setConfigProperties("ExtractedFramesFolder", filePaths[1] + @"\DJI\Output");
 
-
+           
         }
 
         private void HomePage_isResultReceivedEvent(string s)
@@ -90,6 +91,16 @@ namespace DTP
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, async () =>
             {
                 ConnectionOutputTB.Text += (System.DateTime.Now + " " + s + Environment.NewLine);
+
+            });
+        }
+
+        private async void appDataPathTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            APPConfig.instance.setConfigProperties("DataPath", appDataPathTB.Text.ToString().Replace(@"\", @"/"));
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, async () =>
+            {
+                ConnectionOutputTB.Text += (System.DateTime.Now + " " + "DTP Data Path has been updated. Path: " + appDataPathTB.Text.ToString().Replace(@"\", @"/") + Environment.NewLine);
 
             });
         }

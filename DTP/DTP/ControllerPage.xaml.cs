@@ -577,7 +577,7 @@ namespace DTP
                     await encoder.FlushAsync();
 
 
-                    System.Diagnostics.Debug.WriteLine(currImageCount);
+                    //System.Diagnostics.Debug.WriteLine("Received image count:" + currImageCount); //FOR DEBUG
                     CaculateFrameGenerationTime();
                 }
             }

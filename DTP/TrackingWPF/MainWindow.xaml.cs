@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
+using TrackingWPF.Utils;
 
 namespace TrackingWPF
 {
@@ -17,7 +18,6 @@ namespace TrackingWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private string TrackingProgramPath = @"C:\Users\Family\DTP_Data\Tools\pysot.exe";
         private string ProgramPath = @"C:\Users\Family\Anaconda3\envs\pysot\python.exe";
         private PythonProgram PyObjectTracking;
         private AppServiceConnection Connection = null;
@@ -35,9 +35,8 @@ namespace TrackingWPF
             StartTBConsoleWriteLineTask();
             StartHandlePyOutputTask();
             StartSendBoundingBoxesTask();
-            PyObjectTracking = new PythonProgram("Object Tracking", ProgramPath);
-            PyObjectTracking.tbORHandler += PyOTConsoleOutputEvent;
             InitAppServiceConnection();
+            PythonPathTBox.Text = ProgramPath;
         }
 
         private void HandlePyOutputTask()
@@ -55,7 +54,6 @@ namespace TrackingWPF
                     {
                         try
                         {
-
 
                             if (OutputString.Contains("PYSOT_FPS"))
                             {
@@ -216,21 +214,42 @@ namespace TrackingWPF
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            //PyObjectTracking.executePythonProgram("--config C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
-            //    "--snapshot C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
-            //    "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 3");
-
-            PyObjectTracking.executePythonProgram("C:/Users/Family/Documents/FYP_CV_Code/DTP_Source/PySOT/demo.py --config C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
-     "--snapshot C:/Users/Family/DTP_Data/PySOT/PySOT_Pretrained_Models/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
-     "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 5");
-            
-
-            await Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
+            if (File.Exists(PythonPathTBox.Text) && PythonPathTBox.Text.Contains("python.exe"))
             {
-                StartButton.IsEnabled = false; 
-            }));
+                PyOTConsoleOutputEvent(PythonPathTBox.Text);
+                PyObjectTracking = new PythonProgram("Object Tracking", PythonPathTBox.Text);
+                PyObjectTracking.tbORHandler += PyOTConsoleOutputEvent;
+                
+                try
+                {
+                   //APPConfig.instance.setConfigProperties("DataPath", @"C:/Users/Family/DTP_Data"); //FOR DEBUG
 
+                    String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
+
+                    String PyParams = AppDataPath + "/PySOT/demo.py --config " + AppDataPath + "/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
+                                                           "--snapshot " + AppDataPath + "/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
+                                                             "--video_name " + AppDataPath + "/DJI/Output --buffer_size 5";
+                    //String PyParams = "C:/Users/Family/Documents/FYP_CV_Code/DTP_Source/PySOT/demo.py --config C:/Users/Family/DTP_Data/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
+                    //                  "--snapshot C:/Users/Family/DTP_Data/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
+                    //                  "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 5";
+
+                    PyOTConsoleOutputEvent(PyParams);
+
+                    PyObjectTracking.executePythonProgram(PyParams);
+                }
+                catch(Exception ex)
+                {
+                    PyOTConsoleOutputEvent(ex.ToString());
+                }
+
+                await Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
+                {
+                    StartButton.IsEnabled = false;
+                }));
             }
+
+
+        }
 
 
         private async void NightModeTButton_Click(object sender, RoutedEventArgs e)

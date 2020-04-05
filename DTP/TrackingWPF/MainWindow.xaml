@@ -13,13 +13,14 @@
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
-
         </Grid.ColumnDefinitions>
+        
         <Border Name="NightModeButtonBorder" Background="Black" Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock FontSize="15" Text="Night Mode:" Foreground="White" VerticalAlignment="Center" ></TextBlock>
@@ -27,20 +28,24 @@
                               Foreground="White"  IsChecked="False" Click="NightModeTButton_Click" BorderBrush="White" />
             </StackPanel>
         </Border>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="4">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3">
             <Label Content="Python Output Console" FontWeight="DemiBold"/>
             <TextBox x:Name="pyoutputTB" Width="500" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" IsReadOnly="True" Background="WhiteSmoke" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="4">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3">
             <Button Content="START" FontSize="20" Click="StartButton_Click"  Name="StartButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="10,0,0,0">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0">
             <Label FontSize="12" Content="Object Tracking FPS:"/>
             <Label Name="OTFPSlbl" FontSize="15" FontWeight="Bold" Content="-" HorizontalAlignment="Center"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Margin="10,0,0,0">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="10,0,0,0">
             <Label FontSize="12" Content="Image Enhancement FPS:"/>
             <Label Name="EFPSlbl" FontSize="15" FontWeight="Bold" Content="-" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" Margin="10,0,0,0">
+            <Label FontSize="12" Content="Python Interpreter Path:          "/>
+            <TextBox Name="PythonPathTBox" FontSize="12" FontWeight="Bold" Text=""  HorizontalAlignment="Center" Width="300"/>
         </StackPanel>
     </Grid>
 </Window>

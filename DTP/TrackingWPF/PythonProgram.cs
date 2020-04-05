@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Text;
 using System.Threading;
 
 namespace TrackingWPF
@@ -26,6 +27,7 @@ namespace TrackingWPF
 
                     using (Process p = new Process())
                     {
+
                         p.StartInfo.FileName = programPath;
                         p.StartInfo.Arguments = arguments;
                         p.StartInfo.UseShellExecute = false;
@@ -39,6 +41,7 @@ namespace TrackingWPF
                         p.WaitForExit();
                         p.Close();
                         tbORHandler(programName + " - End");
+                       
                     }
                 }));
                 thread.Start();

@@ -28,11 +28,10 @@
                     <TextBlock Name="ConnectionStatus" FontSize="15" Text="Not Connected" Foreground="Red"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="1" Grid.ColumnSpan="3">
-                    <TextBlock FontSize="15" Text="Extracted Raw Frames Path:"></TextBlock>
+                    <TextBlock FontSize="15" Text="DTP Data Path:"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="80,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row ="1" Grid.Column="1">
-                    <TextBox FontSize="15" Text="C:\Users\Family\DTP_Data\DJI\Output" UseLayoutRounding="True" d:LayoutRounding="Auto" Width="720" Name="appDataPathTB" IsEnabled="False">
-                    </TextBox>
+                    <TextBox FontSize="15" Text="" UseLayoutRounding="True" d:LayoutRounding="Auto" Width="720" x:Name="appDataPathTB" TextChanged="appDataPathTB_TextChanged"/>
                 </StackPanel>
                 <StackPanel Margin="10,10,0,0" HorizontalAlignment="left" VerticalAlignment="Top" Grid.Row ="2" Grid.Column="0">
                     <TextBlock FontSize="15" Text="Log:"></TextBlock>
