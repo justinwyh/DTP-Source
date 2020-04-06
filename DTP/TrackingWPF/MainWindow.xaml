@@ -33,7 +33,7 @@
             <TextBox x:Name="pyoutputTB" Width="500" Height="300" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="NoWrap" Text="" IsReadOnly="True" Background="WhiteSmoke" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3">
-            <Button Content="START" FontSize="20" Click="StartButton_Click"  Name="StartButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+            <Button Content="START" FontSize="20" Click="StartButton_Click"  Name="StartButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGoldenrodYellow" BorderBrush="Black" BorderThickness="2"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3"  Margin="10,0,0,0">
             <Label FontSize="12" Content="Object Tracking (and low light enhancement) FPS:"/>

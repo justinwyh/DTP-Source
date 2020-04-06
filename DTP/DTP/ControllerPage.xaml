@@ -90,15 +90,15 @@
                 <TextBlock  Margin="0,10,10,0" FontSize="18" Text="Auto Take Off/Landing:" Grid.Row="0" Grid.Column="0" 
                             VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Button Name="ATOButton" Margin="0,10,10,0" FontSize="18" Content="Take Off" Grid.Row="0" Grid.Column="1" 
-                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ATOButton_Click"/>
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ATOButton_Click" Background="LightGoldenrodYellow" BackgroundSizing="InnerBorderEdge" BorderBrush="Black"/>
                 <Button Name="ALButton" Margin="0,10,10,0" FontSize="18" Content="Landing" Grid.Row="0" Grid.Column="2" 
-                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ALButton_Click" />
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="ALButton_Click" Background="LightGoldenrodYellow" BackgroundSizing="InnerBorderEdge" BorderBrush="Black" />
                 <TextBlock  Margin="0,10,10,0" FontSize="18" Text="Visual Object Tracking:" Grid.Row="1" Grid.Column="0" 
-                            VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            VerticalAlignment="Center" HorizontalAlignment="Center" />
                 <Button Name="VOTStartButton" Margin="0,10,10,0" FontSize="18" Content="Start" Grid.Row="1" Grid.Column="1" 
-                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="VOTStartButton_Click"/>
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="VOTStartButton_Click"  Background="LightGoldenrodYellow" BackgroundSizing="InnerBorderEdge" BorderBrush="Black"/>
                 <Button Name="VOTStopButton" Margin="0,10,10,0" FontSize="18" Content="Stop" Grid.Row="1" Grid.Column="2" 
-                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="VOTStopButton_Click"/>
+                        VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Click="VOTStopButton_Click"  Background="LightGoldenrodYellow" BackgroundSizing="InnerBorderEdge" BorderBrush="Black"/>
             </Grid>
         </StackPanel>
     </Grid>

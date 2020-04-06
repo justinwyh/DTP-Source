@@ -224,8 +224,8 @@ namespace TrackingWPF
                 {
                     //APPConfig.instance.setConfigProperties("DataPath", @"C:/Users/Family/DTP_Data"); //FOR DEBUG
 
-                    //String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
-                    String AppDataPath = @"C:/Users/Family/DTP_Data";  //For Debug
+                    String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
+                    //String AppDataPath = @"C:/Users/Family/DTP_Data";  //For Debug
 
                     String PyParams = "";
                     switch (NightModeTButton.IsChecked)
