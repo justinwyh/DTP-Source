@@ -222,13 +222,25 @@ namespace TrackingWPF
                 
                 try
                 {
-                   //APPConfig.instance.setConfigProperties("DataPath", @"C:/Users/Family/DTP_Data"); //FOR DEBUG
+                    //APPConfig.instance.setConfigProperties("DataPath", @"C:/Users/Family/DTP_Data"); //FOR DEBUG
 
-                    String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
+                    //String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
+                    String AppDataPath = @"C:/Users/Family/DTP_Data";  //For Debug
 
-                    String PyParams = AppDataPath + "/PySOT/demo.py --config " + AppDataPath + "/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
-                                                           "--snapshot " + AppDataPath + "/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
-                                                             "--video_name " + AppDataPath + "/DJI/Output --buffer_size 5";
+                    String PyParams = "";
+                    switch (NightModeTButton.IsChecked)
+                    {
+                        case true:
+                            PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
+                                                           "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
+                                                             "--data " + AppDataPath + "/DJI/Output --buffer_size 2 " + "--dark_mode " + "--rtllnetcheckpoint " + AppDataPath + "/Source/RTLLNet/checkpoint/model.pth";
+                            break;
+                        case false:
+                            PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
+                                                            "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
+                                                              "--data " + AppDataPath + "/DJI/Output --buffer_size 5 " + "--no-dark_mode";
+                            break;
+                    }
                     //String PyParams = "C:/Users/Family/Documents/FYP_CV_Code/DTP_Source/PySOT/demo.py --config C:/Users/Family/DTP_Data/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
                     //                  "--snapshot C:/Users/Family/DTP_Data/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
                     //                  "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 5";
@@ -301,6 +313,5 @@ namespace TrackingWPF
             IsHandlePyOutputTaskEnabled = false;
 
         }
-
     }
 }

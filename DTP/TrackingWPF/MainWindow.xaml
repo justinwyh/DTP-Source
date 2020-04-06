@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrackingWPF"
         mc:Ignorable="d"
-        Title="Object Tracking" d:DesignHeight="700" d:DesignWidth="600" MaxWidth="600" MaxHeight="700">
+        Title="Object Tracking" d:DesignHeight="750" d:DesignWidth="600" MaxWidth="600" MaxHeight="750">
     
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock FontSize="15" Text="Night Mode:" Foreground="White" VerticalAlignment="Center" ></TextBlock>
                 <ToggleButton Margin="10,0,0,0" Name="NightModeTButton" Background="Transparent" FontSize="10" Content="OFF" VerticalAlignment="Center" 
-                              Foreground="White"  IsChecked="False" Click="NightModeTButton_Click" BorderBrush="White" />
+                              Foreground="White"  IsChecked="False" Click="NightModeTButton_Click" BorderBrush="White"/>
             </StackPanel>
         </Border>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="3">
@@ -35,17 +35,14 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3">
             <Button Content="START" FontSize="20" Click="StartButton_Click"  Name="StartButton" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="10,0,0,0">
-            <Label FontSize="12" Content="Object Tracking FPS:"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3"  Margin="10,0,0,0">
+            <Label FontSize="12" Content="Object Tracking (and low light enhancement) FPS:"/>
             <Label Name="OTFPSlbl" FontSize="15" FontWeight="Bold" Content="-" HorizontalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" Margin="10,0,0,0">
-            <Label FontSize="12" Content="Image Enhancement FPS:"/>
-            <Label Name="EFPSlbl" FontSize="15" FontWeight="Bold" Content="-" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" Margin="10,0,0,0">
             <Label FontSize="12" Content="Python Interpreter Path:          "/>
             <TextBox Name="PythonPathTBox" FontSize="12" FontWeight="Bold" Text=""  HorizontalAlignment="Center" Width="300"/>
         </StackPanel>
+        
     </Grid>
 </Window>
