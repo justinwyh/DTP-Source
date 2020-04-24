@@ -1,0 +1,1 @@
+This path is for storing temporary decoded image frames in .jpg format.
