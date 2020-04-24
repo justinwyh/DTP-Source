@@ -1,5 +1,5 @@
 # DTP-Source
-Final Year Project: Drone Tracking Program (DTP)
+Drone Tracking Program (DTP)
 # Requirements:
 1. Windows 10
 2. Nvidia GPU that supports CUDA 10.1
