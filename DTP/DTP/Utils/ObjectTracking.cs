@@ -8,11 +8,12 @@ namespace DTP.Utils
     {
         private int frame_width = 0;
         private int frame_height = 0;
+        private double acceptableError = 0.30;
         private int[] first_bounding_box_value;
 
         private int[] desiredROICenterCorr;
-        private readonly double acceptableError = 0.30;
-        private readonly float defaultJoyStickValue = 0.15F;
+        public double AcceptableError { get => acceptableError; set => acceptableError = value; }
+        private readonly float defaultJoyStickValue = 0.13F;
 
         private Boolean isIssueControlSignalTaskEnabled = false;
         private Boolean isStopThread = false;
@@ -67,16 +68,18 @@ namespace DTP.Utils
 
                     if (Controller.curr_pitch == 0)
                     {
-                        //Controller.curr_throttle = CalcThrottleValue(CalcROICenterCorr(TmpBboxValues));
+                        Controller.curr_throttle = CalcThrottleValue(CalcROICenterCorr(TmpBboxValues));
                     }
                     else
                     {
-                        //Controller.curr_throttle = 0;
+                        Controller.curr_yaw = 0;
+                        Controller.curr_throttle = 0;
                     }
                 }
                 else
                 {
                     Controller.curr_pitch = 0;
+                    Controller.curr_throttle = 0;
                 }
             }
         }

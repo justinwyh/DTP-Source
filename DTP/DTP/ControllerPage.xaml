@@ -33,6 +33,7 @@
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*" />
@@ -69,6 +70,11 @@
                 <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                     <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Yaw:"/>
                     <TextBlock  Margin="10,10,0,0" Name="yawlbl" FontSize="15"  Text="-" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <TextBlock  Margin="0,10,0,0" FontSize="15" Text="Maximum acceptable tracking error:"/>
+                    <TextBox  Margin="10,0,0,0" Name="maeTB" FontSize="15"  Text="30" HorizontalAlignment="Center" TextAlignment="Left" Width="40" BorderThickness="1" TextChanged="maeTB_TextChanged"/>
+                    <TextBlock  Margin="10,10,0,0" FontSize="15" Text="%"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

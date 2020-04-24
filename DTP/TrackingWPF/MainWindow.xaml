@@ -35,12 +35,16 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.ColumnSpan="3">
             <Button Content="START" FontSize="20" Click="StartButton_Click"  Name="StartButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="LightGoldenrodYellow" BorderBrush="Black" BorderThickness="2"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3"  Margin="10,0,0,0">
-            <Label FontSize="12" Content="Object Tracking (and low light enhancement) FPS:"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2"  Margin="10,0,0,0">
+            <Label FontSize="12" Content="Object Tracking (and low light enhancement) FPS:" FontWeight="DemiBold"/>
             <Label Name="OTFPSlbl" FontSize="15" FontWeight="Bold" Content="-" HorizontalAlignment="Center"/>
         </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="2"  Margin="10,0,0,0">
+            <Label FontSize="12" Content="Frame Buffer Size:" FontWeight="DemiBold"/>
+            <TextBox Name="FrameBufferSizeTB" FontSize="15" Text="1" HorizontalAlignment="Center" TextAlignment="Center" Width="30" TextChanged="FrameBufferSizeTB_TextChanged"/>
+        </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" Margin="10,0,0,0">
-            <Label FontSize="12" Content="Python Interpreter Path:          "/>
+            <Label FontSize="12" Content="Python Interpreter Path:          " FontWeight="DemiBold"/>
             <TextBox Name="PythonPathTBox" FontSize="12" FontWeight="Bold" Text=""  HorizontalAlignment="Center" Width="300"/>
         </StackPanel>
         

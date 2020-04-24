@@ -35,7 +35,6 @@ namespace DTP
             
             ApplicationView.PreferredLaunchViewSize =new Size(1600, 900);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
         }
 
       
@@ -74,6 +73,8 @@ namespace DTP
             {
                 ContentFrame.Navigate(typeof(HomePage));
 
+                Connection.instance.isAirCraftConnected();
+
                 foreach (var item in NavView.MenuItems.OfType<NavigationViewItem>())
                 {
                     if (item.Tag.Equals("Home_Page"))
@@ -99,7 +100,7 @@ namespace DTP
                         {
                             ContentFrame.Navigate(typeof(HomePage));
                             CurrStrContentFrameName = "HomePage";
-
+                            Connection.instance.isAirCraftConnected();
                         }
                         break;
 

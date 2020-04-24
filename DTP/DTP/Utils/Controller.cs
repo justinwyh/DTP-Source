@@ -13,6 +13,8 @@ namespace DTP.Utils
 
         public static float curr_roll, curr_pitch, curr_throttle, curr_yaw;
 
+        public static Boolean isManualControlOverride = false;
+
         public async static void StartAutoTakeoff()
         {
             try
@@ -71,7 +73,11 @@ namespace DTP.Utils
 
         public static void UpdateJoyStickValue()
         {
-            DJISDKManager.Instance.VirtualRemoteController.UpdateJoystickValue(curr_throttle, curr_yaw, curr_pitch, curr_roll); 
+            if (!isManualControlOverride)
+            {
+                DJISDKManager.Instance.VirtualRemoteController.UpdateJoystickValue(curr_throttle, curr_yaw, curr_pitch, curr_roll);
+
+            }
         }
 
         public static void ControlJoyStickByKey(VirtualKey key)

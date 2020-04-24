@@ -10,6 +10,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
 using TrackingWPF.Utils;
+using System.Text.RegularExpressions;
 
 namespace TrackingWPF
 {
@@ -27,6 +28,9 @@ namespace TrackingWPF
         private Boolean IsHandlePyOutputTaskEnabled = true;
         private Boolean IsSendMessageTaskEnabled = true;
         private Boolean IsConsoleOutputTaskEnabled = true;
+        private int buffersize;
+        private int Buffersize { get => buffersize; set => buffersize = value; }
+
         //private string loggingpath = "C:\\Users\\Family\\Desktop\\log" + DateTime.Now.Second + ".txt"; //For Debug
 
         public MainWindow()
@@ -37,6 +41,7 @@ namespace TrackingWPF
             StartSendBoundingBoxesTask();
             InitAppServiceConnection();
             PythonPathTBox.Text = ProgramPath;
+            buffersize = 1;
         }
 
         private void HandlePyOutputTask()
@@ -106,7 +111,7 @@ namespace TrackingWPF
                         }
                         catch (Exception ex)
                         {
-                            PyConsoleOutputQueue.Enqueue(ex.ToString());
+                            PyConsoleOutputQueue.Enqueue(ex.ToString() +'\n' + "OutputString:" + OutputString);
                         }
                     }
                 }
@@ -161,8 +166,10 @@ namespace TrackingWPF
         {
             if (IsHandlePyOutputTaskEnabled)
             {
-                PyOutputQueue.Enqueue(OutputString);
-
+                if (!Regex.Replace(OutputString, @"\s+", "").Equals(""))
+                {
+                    PyOutputQueue.Enqueue(OutputString);
+                }      
             }
         }
 
@@ -227,23 +234,19 @@ namespace TrackingWPF
                     String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
                     //String AppDataPath = @"C:/Users/Family/DTP_Data";  //For Debug
 
-                    String PyParams = "";
+                    String PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_alex_dwxcorr/config.yaml  " +
+                                                           "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_alex_dwxcorr/model.pth " +
+                                                             "--data ";
                     switch (NightModeTButton.IsChecked)
                     {
                         case true:
-                            PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
-                                                           "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
-                                                             "--data " + AppDataPath + "/DJI/Output --buffer_size 2 " + "--dark_mode " + "--rtllnetcheckpoint " + AppDataPath + "/Source/RTLLNet/checkpoint/model.pth";
+                            PyParams += AppDataPath + "/DJI/Output --buffer_size " + Buffersize +  " --dark_mode " + "--dbllnetcheckpoint " + AppDataPath + "/Source/DBLLNet/checkpoint/dbllnet_cm1ms-ssim.pth";
                             break;
                         case false:
-                            PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
-                                                            "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
-                                                              "--data " + AppDataPath + "/DJI/Output --buffer_size 5 " + "--no-dark_mode";
+                            PyParams += AppDataPath + "/DJI/Output --buffer_size " + Buffersize + " --no-dark_mode";
                             break;
                     }
-                    //String PyParams = "C:/Users/Family/Documents/FYP_CV_Code/DTP_Source/PySOT/demo.py --config C:/Users/Family/DTP_Data/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
-                    //                  "--snapshot C:/Users/Family/DTP_Data/PySOT/Snapshot/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
-                    //                  "--video_name C:/Users/Family/DTP_Data/DJI/Output --buffer_size 5";
+
 
                     PyOTConsoleOutputEvent(PyParams);
 
@@ -312,6 +315,15 @@ namespace TrackingWPF
         {
             IsHandlePyOutputTaskEnabled = false;
 
+        }
+
+        private void FrameBufferSizeTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (FrameBufferSizeTB.Text != "")
+            {
+                Buffersize = int.Parse(FrameBufferSizeTB.Text);
+
+            }
         }
     }
 }

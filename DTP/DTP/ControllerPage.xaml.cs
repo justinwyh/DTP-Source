@@ -79,8 +79,6 @@ namespace DTP
                 base.OnNavigatedTo(e);
                 await UninitializeVideoFeedModule();
                 await UninitAsync();
-                Connection.instance.isAirCraftConnected();
-
             }
             catch (Exception ex)
             {
@@ -89,9 +87,14 @@ namespace DTP
 
         }
 
-        private void ControllerPage_ConnectionChangedEvent(bool isConnected)
+        private async void ControllerPage_ConnectionChangedEvent(bool isConnected)
         {
-            isStopObjectTrackingEvent();
+            if (!isConnected)
+            {
+                await UninitAsync();
+                isStopObjectTrackingEvent();
+
+            }
         }
 
 
@@ -210,6 +213,14 @@ namespace DTP
             });
         }
 
+        private void maeTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (maeTB.Text != "") {
+                objectTracking.AcceptableError = double.Parse(maeTB.Text) / 100;
+
+            }
+        }
+
         private void ATOButton_Click(object sender, RoutedEventArgs e)
         {
             Controller.StartAutoTakeoff();
@@ -226,11 +237,13 @@ namespace DTP
         }
         private void MainGrid_KeyDown(object sender, KeyEventArgs e)
         {
+            Controller.isManualControlOverride = true;
             Controller.ControlJoyStickByKey(e.VirtualKey);
         }
 
         private void MainGrid_KeyUp(object sender, KeyEventArgs e)
         {
+            Controller.isManualControlOverride = false;
             Controller.UpdateJoyStickValue("");
         }
 
@@ -409,7 +422,7 @@ namespace DTP
             UpdateConsoleOuptut("AppService - Lost connection to TrackingWPF process");
         }
 
-        private void AppServiceConnection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        private async void AppServiceConnection_RequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
         {
             try
             {
@@ -424,7 +437,20 @@ namespace DTP
 
                 else if (args.Request.Message.ContainsKey("isStartProduceJPG"))
                 {
-                    IsProdcuceImageTaskEnabled = (bool)args.Request.Message["isStartProduceJPG"];
+                    IsProdcuceImageTaskEnabled = Boolean.Parse(args.Request.Message["isStartProduceJPG"].ToString());
+
+                    if (!IsProdcuceImageTaskEnabled)
+                    {
+                        IsStopThread = true;
+                        objectTracking.IsIssueControlSignalTaskEnabled = false;
+                        objectTracking.IsStopThread = true;
+                        Boolean isFlying = await Controller.IsFlyingAsync();
+                        if (isFlying)
+                        {
+                            Controller.UpdateJoyStickValue("");
+                            Controller.StartAutoLanding();
+                        }
+                    }
                 }
 
                 else if(args.Request.Message.ContainsKey("Bbox_XCorr"))
@@ -556,7 +582,7 @@ namespace DTP
             {
                 if (data != null)
                 {
-                    // Debug: For printting the byte data
+                    // Debug: For printing the byte data
                     //var tmpSB = new StringBuilder("Size:");
                     //tmpSB.Append(data.Length + " { ");
                     //foreach (var b in data)
@@ -639,7 +665,7 @@ namespace DTP
             }
         }
 
-        
+      
     }
 
 
