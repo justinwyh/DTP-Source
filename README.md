@@ -9,7 +9,7 @@ Final Year Project: Drone Tracking Program (DTP)
 3. Install the DTP program by right-clicking the DTP_Package_1.0.0.0_Test\Add-AppDevPackage.ps1 in the release app package.
 4. Replace "from pysot." to "from PySOT.pysot" and replace "from toolkit." to "from PySOT.toolkit." in all Python files under DTP_Data\Source\PySOT
 5. Start the program and update the DTP data path in the program.
-# Build the DTP from scratch
+# Build DTP from scratch
 Please reference [here](https://developer.dji.com/windows-sdk/documentation/application-development-workflow/workflow-integrate.html) and the download the SDK [here](https://developer.dji.com/windows-sdk/downloads).
 # References
 https://github.com/STVIR/pysot/
