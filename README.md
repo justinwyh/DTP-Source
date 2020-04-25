@@ -1,4 +1,5 @@
 # DTP-Source
+This is a final year project. 
 Drone Tracking Program (DTP)
 # Requirements:
 1. Windows 10
