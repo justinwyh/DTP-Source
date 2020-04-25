@@ -8,7 +8,8 @@ Drone Tracking Program (DTP)
 2. Run requirements.bat under DTP_Data. Please visit [here](https://github.com/facebookresearch/pytorch3d/issues/10) if you encounter any installation issues.
 3. Install the DTP program by right-clicking the DTP_Package_1.0.0.0_Test\Add-AppDevPackage.ps1 in the release app package.
 4. Replace "from pysot." with "from PySOT.pysot" and replace "from toolkit." with "from PySOT.toolkit." in all Python files under DTP_Data\Source\PySOT
-5. Start the program and update the DTP data path in the program.
+5. Download the pretrained PySOT models [here](https://github.com/STVIR/pysot/blob/master/MODEL_ZOO.md) and place them under DTP_Data\Source\PySOT\experiments.
+6. Start the program and update the DTP data path in the program.
 # Build DTP from scratch
 Please reference [here](https://developer.dji.com/windows-sdk/documentation/application-development-workflow/workflow-integrate.html) and then download the SDK [here](https://developer.dji.com/windows-sdk/downloads).
 # References
