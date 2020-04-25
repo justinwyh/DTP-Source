@@ -1,5 +1,7 @@
 # DTP-Source
 FYP: Drone Tracking Program (DTP)
+
+This is a final deliverable of a FYP project.
 # Requirements:
 1. Windows 10
 2. Nvidia GPU that supports CUDA 10.1
@@ -16,3 +18,5 @@ Please reference [here](https://developer.dji.com/windows-sdk/documentation/appl
 https://github.com/STVIR/pysot/
 
 https://github.com/jorge-pessoa/pytorch-msssim
+
+
