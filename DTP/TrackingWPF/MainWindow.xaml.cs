@@ -234,8 +234,8 @@ namespace TrackingWPF
                     String AppDataPath = APPConfig.instance.getConfigProperties("DataPath");
                     //String AppDataPath = @"C:/Users/Family/DTP_Data";  //For Debug
 
-                    String PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_alex_dwxcorr/config.yaml  " +
-                                                           "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_alex_dwxcorr/model.pth " +
+                    String PyParams = AppDataPath + "/Source/Main.py --pysotconfig " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/config.yaml  " +
+                                                           "--pysotcheckpoint " + AppDataPath + "/Source/PySOT/experiments/siamrpn_mobilev2_l234_dwxcorr/model.pth " +
                                                              "--data ";
                     switch (NightModeTButton.IsChecked)
                     {

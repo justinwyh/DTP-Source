@@ -9,7 +9,7 @@
   <Identity
     Name="com.justinwyh.DTP"
     Publisher="CN=Wong Yu Hong Justin"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <Properties>
     <DisplayName>DTP_Package</DisplayName>
