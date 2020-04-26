@@ -1,10 +1,12 @@
 # DTP-Source
 FYP: Drone Tracking Program (DTP)
 
-This is a final deliverable of a FYP project.
+This is a final deliverable of a FYP.
 # Requirements:
 1. Windows 10
 2. Nvidia GPU that supports CUDA 10.1
+3. A drone that is compatile with the DJI Windows SDK. Please check all supported drones [here](https://developer.dji.com/windows-sdk/).
+
 # Installation
 1. Download DTP_Data folder and the DTP program on the Github Release page.
 2. Run requirements.bat under DTP_Data. Please visit [here](https://github.com/facebookresearch/pytorch3d/issues/10) if you encounter any installation issues.
